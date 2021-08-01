@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding:0;
+}
+.app-header{
+    height:50px;
+    background-color: #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size:25px;
+}
+
+.contents{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top:50px;
+}
+
+.description{
+    font-size:25px;
+    padding-left:10%;
+    width:40%;
+}
+
+.image{
+    width:40%;
+    padding-right: 10%;
+}
+
+.dog-image{
+    width:auto;
+    height:500px;
+}
+
+.change-btn{
+    display:block;
+    margin:30px 200px 30px auto;
+    border: none;
+    border-radius: 5px;
+    width:80px;
+    height:30px;
+    color: #fff;
+    background-color: teal;
+    cursor: pointer;
+}
+
+hr{
+    margin:0 25px;
+}
