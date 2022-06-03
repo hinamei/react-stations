@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { BreedsSelect } from './BreedsSelect';
 
 export const DogListContainer = (props) =>{
-    const[breeds, setBreeds] = useState("shiba");
-    const listUrl = "https://dog.ceo/api/breeds/list/all";
-    
-    useEffect(() => {
-      fetch(listUrl)
-        .then(res => res.json()).then(result => {
-          if(result.status == "success") {
-            setBreeds(result.message);
-          }
-        });
-    } , []);
+  // 犬種のリストを保持する
+  const[breeds, setBreeds] = useState([]);
+  const listUrl = "https://dog.ceo/api/breeds/list/all";
+  
+  // dogAPIにアクセスして、犬種一覧を取得する
+  useEffect(() => {
+    fetch(listUrl)
+    .then(res => res.json()).then(data => {
+      if(data.status == "success") {
+        setBreeds(Object.keys(data.message));
+      }
+    });
+  } , []);
+  
+  // ドロップダウンリストで選択された犬種を保持する
+  const[selectBreed, setSelectedBreed] = useState("");
 
   return (
-      <dev></dev>
+      <dev>
+        <BreedsSelect 
+          breeds = {breeds}
+          change = {e => setSelectedBreed(e.target.value)}
+          selectBreed = {selectBreed}
+        />
+      </dev>
   )
  };
