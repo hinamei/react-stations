@@ -21,12 +21,27 @@ export const DogListContainer = (props) =>{
   const[selectBreed, setSelectedBreed] = useState("");
 
   return (
-      <dev>
-        <BreedsSelect 
-          breeds = {breeds}
-          change = {e => setSelectedBreed(e.target.value)}
-          selectBreed = {selectBreed}
-        />
+      <dev className="doglist-area">
+        <div className='select-breed-area'>
+          <span>Breeds List</span>
+          <BreedsSelect 
+            breeds = {breeds}
+            change = {e => setSelectedBreed(e.target.value)}
+            selectBreed = {selectBreed}
+          />
+          <button className='change-btn'>表示</button>
+        </div>
+        <div className='dog-list-image-area'>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+        </div>
       </dev>
   )
  };

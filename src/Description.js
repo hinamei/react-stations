@@ -13,16 +13,18 @@ export const Description = (props) =>{
        });
    }
     return (
-        <dev className="contents">
-          <dev>
+        <dev className="top-area">
+          <dev className="description-area">
             <p>{props.description}</p>
           </dev>
-          <div>
+          <div className="dog-area">
+              <div>
+                <DogImage dogUrl={url}/>
+              </div>
+              <div>
+                <button className="change-btn" onClick={() => updateImage()}>変更</button>
+              </div>
           </div>
-          <div className="image">
-              <DogImage dogUrl={url}/>
-          </div>
-          <button className="change-btn" onClick={() => updateImage()}>変更</button>
         </dev>
     )
  };
