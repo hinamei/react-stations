@@ -5,20 +5,32 @@ import { BreedsSelect } from './BreedsSelect';
 export const DogListContainer = (props) =>{
   // 犬種のリストを保持する
   const[breeds, setBreeds] = useState([]);
-  const listUrl = "https://dog.ceo/api/breeds/list/all";
+  // ドロップダウンリストで選択された犬種を保持する
+  const[selectBreed, setSelectedBreed] = useState("akita");
+  // APIから取得した犬の画像リストを保持する
+  const[dogList, setDogList] = useState([]);
   
   // dogAPIにアクセスして、犬種一覧を取得する
   useEffect(() => {
-    fetch(listUrl)
+    fetch("https://dog.ceo/api/breeds/list/all")
     .then(res => res.json()).then(data => {
       if(data.status == "success") {
         setBreeds(Object.keys(data.message));
       }
     });
   } , []);
-  
-  // ドロップダウンリストで選択された犬種を保持する
-  const[selectBreed, setSelectedBreed] = useState("");
+
+  function reloadImages(breed) {
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random/10`)
+    .then(res => res.json())
+    .then(data => {setDogList(data.message)});
+  }
+
+  const breedImages = dogList.map((image) => {
+    return(
+      <img src={image} key={image} />
+    )
+  })
 
   return (
       <dev className="doglist-area">
@@ -29,18 +41,10 @@ export const DogListContainer = (props) =>{
             change = {e => setSelectedBreed(e.target.value)}
             selectBreed = {selectBreed}
           />
-          <button className='change-btn'>表示</button>
+          <button className='change-btn' onClick={() => reloadImages(selectBreed)}>表示</button>
         </div>
         <div className='dog-list-image-area'>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
-          <img className="dog-image" src="https://images.dog.ceo/breeds/beagle/n02088364_129.jpg"></img>
+          {breedImages}
         </div>
       </dev>
   )

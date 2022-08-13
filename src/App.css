@@ -51,7 +51,6 @@ img{
     height: 60%;
     display:flex;
     flex-flow: column;
-    background-color: coral;
 }
 .select-breed-area{
     height: 20%;
